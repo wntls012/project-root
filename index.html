@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>크루업(CrewUp) - 2030 취향·갓생 마이크로 모임 & 챌린지</title>
+  <meta name="description" content="혼자 하면 작심삼일, 결이 맞는 2030과 함께하면 완주율 92%. 퇴근 후 모각코부터 식비 방어 챌린지까지 이번 주 시작하는 소규모 크루에 합류하세요." />
+  
+  <!-- 프리텐다드(Pretendard) 웹폰트 로드 (가독성 및 트렌디한 UI용) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- 커스텀 스타일시트 연결 -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       섹션 1-A. 상단 고정 헤더 (Header & Navigation)
+  ====================================================================== -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <!-- 브랜드 로고 -->
+      <a href="#top" class="logo" aria-label="크루업 홈으로 이동">
+        <span class="logo-badge">2030</span> Crew<span class="text-coral">Up</span>
+      </a>
+
+      <!-- 모바일 햄버거 토글 버튼 (접근성 속성 포함) -->
+      <button 
+        type="button" 
+        class="mobile-menu-btn" 
+        id="mobileMenuBtn"
+        aria-label="메뉴 열기" 
+        aria-expanded="false" 
+        aria-controls="mainNav"
+      >
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- 메인 네비게이션 (모바일: 드롭다운 / 데스크톱: 가로 배치) -->
+      <nav class="main-nav" id="mainNav" aria-label="주요 섹션 메뉴">
+        <ul class="nav-list">
+          <li><a href="#quiz-section" class="nav-link">30초 성향 진단</a></li>
+          <li><a href="#crew-section" class="nav-link">모집 중인 크루</a></li>
+          <li><a href="#calc-section" class="nav-link">환급 계산기</a></li>
+          <li><a href="#faq-section" class="nav-link">FAQ</a></li>
+        </ul>
+        <button type="button" class="btn btn-primary nav-cta open-modal-btn" data-crew="자유 선택 (전체 테마)">
+          사전 신청하기
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         섹션 1-B. 히어로(Hero) 섹션 + 실시간 마감 카운트다운
+    ====================================================================== -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <!-- 좌측: 메인 카피 및 카운트다운 -->
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span class="pulse-dot"></span> 1기 베타 크루 선착순 모집 중
+          </div>
+          <h1 class="hero-title">
+            혼자 하면 작심삼일,<br />
+            결이 맞는 2030과 함께하면<br />
+            <span class="highlight">완주율 92%</span>
+          </h1>
+          <p class="hero-subtitle">
+            퇴근 후 2시간 모각코부터 2주 식비 방어 챌린지까지,<br />
+            이번 주 시작하는 소규모 크루에 합류하세요.
+          </p>
+
+          <!-- 실시간 마감 카운트다운 박스 -->
+          <div class="countdown-box" aria-live="polite">
+            <p class="countdown-label">🔥 1기 얼리버드 모집 마감까지 남은 시간</p>
+            <div class="countdown-timer" id="countdownTimer">
+              <div class="time-unit">
+                <span class="time-val" id="cd-days">03</span>
+                <span class="time-txt">일</span>
+              </div>
+              <span class="time-sep">:</span>
+              <div class="time-unit">
+                <span class="time-val" id="cd-hours">00</span>
+                <span class="time-txt">시간</span>
+              </div>
+              <span class="time-sep">:</span>
+              <div class="time-unit">
+                <span class="time-val" id="cd-minutes">00</span>
+                <span class="time-txt">분</span>
+              </div>
+              <span class="time-sep">:</span>
+              <div class="time-unit">
+                <span class="time-val" id="cd-seconds">00</span>
+                <span class="time-txt">초</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 히어로 CTA 버튼 그룹 -->
+          <div class="hero-actions">
+            <button type="button" class="btn btn-coral btn-lg open-modal-btn" data-crew="자유 선택 (전체 테마)">
+              얼리버드 50% 혜택받고 합류하기
+            </button>
+            <a href="#quiz-section" class="btn btn-outline btn-lg">
+              내 성향 먼저 진단하기
+            </a>
+          </div>
+        </div>
+
+        <!-- 우측: 데스크톱 2단 레이아웃용 인터랙티브 프리뷰 카드 -->
+        <aside class="hero-preview" aria-label="인기 크루 현황 프리뷰">
+          <div class="preview-card">
+            <div class="preview-header">
+              <span class="badge badge-indigo">실시간 인기 1위</span>
+              <span class="spots-left">🔥 잔여 1석</span>
+            </div>
+            <h2 class="preview-title">주말 오전 10시 무소음 독서 & 인사이트 커피챗</h2>
+            <p class="preview-desc">스마트폰은 잠시 끄고, 각자 읽고 싶은 책에 몰입한 뒤 인사이트를 나눕니다.</p>
+            
+            <div class="preview-stats">
+              <div class="stat-item">
+                <span class="stat-label">모집 정원</span>
+                <strong class="stat-value">최대 6명 (소규모)</strong>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">보증금 환급</span>
+                <strong class="stat-value text-indigo">최대 100% + 보너스</strong>
+              </div>
+            </div>
+
+            <div class="progress-wrap">
+              <div class="progress-info">
+                <span>현재 신청률</span>
+                <strong>90% 달성</strong>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <div class="preview-avatars">
+              <div class="avatar-group">
+                <span class="avatar">🧑‍💻</span>
+                <span class="avatar">👩‍🎨</span>
+                <span class="avatar">🧑‍🚀</span>
+                <span class="avatar">👩‍💼</span>
+              </div>
+              <span class="avatar-text">외 24명이 현재 페이지를 보고 있어요</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         섹션 2. 30초 성향 진단 미니 테스트 (인터랙티브 퀴즈)
+    ====================================================================== -->
+    <section class="section bg-light" id="quiz-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">30초 미니 테스트</span>
+          <h2 class="section-title">나에게 딱 맞는 갓생 크루는?</h2>
+          <p class="section-desc">3가지 질문에 답하면 내 라이프스타일에 가장 잘 맞는 모임을 매칭해 드려요.</p>
+        </div>
+
+        <!-- 퀴즈 카드 컨테이너 -->
+        <div class="quiz-container" aria-live="polite">
+          <!-- 상단 진행률 바 -->
+          <div class="quiz-progress-header">
+            <span id="quizStepText" class="quiz-step-text">질문 1 / 3</span>
+            <div class="quiz-progress-track">
+              <div id="quizProgressBar" class="quiz-progress-fill" style="width: 33.3%;"></div>
+            </div>
+          </div>
+
+          <!-- 질문 영역 (JS로 동적 업데이트) -->
+          <div id="quizQuestionBox" class="quiz-question-box">
+            <h3 id="quizQuestionTitle" class="quiz-q-title">질문을 불러오는 중입니다...</h3>
+            <div id="quizOptionsList" class="quiz-options">
+              <!-- JS에서 선택지 버튼 렌더링 -->
+            </div>
+          </div>
+
+          <!-- 결과 영역 (초기에는 숨김 처리) -->
+          <div id="quizResultBox" class="quiz-result-box hidden">
+            <span class="badge badge-coral">매칭 완료! 당신을 위한 추천 크루</span>
+            <h3 id="quizResultTitle" class="quiz-result-title">추천 모임 제목</h3>
+            <p id="quizResultDesc" class="quiz-result-desc">추천 모임 설명</p>
+            <div class="quiz-result-actions">
+              <button type="button" id="quizApplyBtn" class="btn btn-primary btn-lg open-modal-btn" data-crew="">
+                이 모임 바로 신청하기
+              </button>
+              <button type="button" id="quizRetryBtn" class="btn btn-ghost">
+                🔄 다시 테스트하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         섹션 3. 테마별 모임·챌린지 탭(Tab) 필터 & 카드 리스트
+    ====================================================================== -->
+    <section class="section" id="crew-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">이번 주 시작하는 크루</span>
+          <h2 class="section-title">테마별 마이크로 모임 & 챌린지</h2>
+          <p class="section-desc">원하는 테마를 선택하고 마감되기 전에 사전 알림 및 얼리버드 혜택을 선점하세요.</p>
+        </div>
+
+        <!-- 카테고리 탭 필터 버튼 -->
+        <div class="tab-filter" role="tablist" aria-label="모임 카테고리 필터">
+          <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-filter="all">
+            전체
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-filter="커리어·갓생">
+            💻 커리어·갓생
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-filter="재테크·절약">
+            💰 재테크·절약
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-filter="취향·네트워킹">
+            ☕ 취향·네트워킹
+          </button>
+        </div>
+
+        <!-- 모임 카드 그리드 컨테이너 (JS에서 렌더링) -->
+        <div id="crewGrid" class="crew-grid">
+          <!-- JS에서 <article class="crew-card"> 요소를 동적으로 생성하여 삽입합니다. -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         섹션 4. 보증금 환급 시뮬레이터(계산기) & 아코디언 FAQ
+    ====================================================================== -->
+    <section class="section bg-light" id="calc-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">동기부여 시스템</span>
+          <h2 class="section-title">보증금 환급 시뮬레이터</h2>
+          <p class="section-desc">의지를 돈으로 사세요! 목표를 달성하면 보증금 100% 환급은 물론 상금 보너스까지 드립니다.</p>
+        </div>
+
+        <!-- 계산기 카드 -->
+        <div class="calc-card">
+          <div class="calc-controls">
+            <!-- 슬라이더 1: 참여 기간 -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="durationSlider">참여 기간 선택</label>
+                <strong id="durationValue" class="control-val">2주 (기본 보증금 20,000원)</strong>
+              </div>
+              <input 
+                type="range" 
+                id="durationSlider" 
+                class="range-slider" 
+                min="1" 
+                max="4" 
+                step="1" 
+                value="2" 
+                aria-label="참여 기간 (1주~4주)"
+              />
+              <div class="range-marks">
+                <span>1주</span>
+                <span>2주</span>
+                <span>3주</span>
+                <span>4주</span>
+              </div>
+            </div>
+
+            <!-- 슬라이더 2: 목표 달성률 -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <label for="rateSlider">예상 목표 달성률</label>
+                <strong id="rateValue" class="control-val text-coral">100% 달성</strong>
+              </div>
+              <input 
+                type="range" 
+                id="rateSlider" 
+                class="range-slider" 
+                min="70" 
+                max="100" 
+                step="10" 
+                value="100" 
+                aria-label="목표 달성률 (70%~100%)"
+              />
+              <div class="range-marks">
+                <span>70%</span>
+                <span>80%</span>
+                <span>90%</span>
+                <span>100% (보너스!)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 계산 결과 출력 영역 -->
+          <div class="calc-result-panel" aria-live="polite">
+            <div class="calc-row">
+              <span>예치 보증금 (주당 10,000원)</span>
+              <strong id="baseDepositText">20,000원</strong>
+            </div>
+            <div class="calc-row">
+              <span>달성률 비례 환급금</span>
+              <strong id="refundAmountText">20,000원</strong>
+            </div>
+            <div class="calc-row bonus-row">
+              <span>🎁 100% 완주 리워드 보너스</span>
+              <strong id="bonusAmountText" class="text-coral">+ 2,000원</strong>
+            </div>
+            <hr class="calc-divider" />
+            <div class="calc-total-row">
+              <span>최종 예상 수령액</span>
+              <strong id="totalPayoutText" class="total-payout">22,000원</strong>
+            </div>
+            <p id="calcFeedbackMsg" class="calc-feedback">
+              🎉 100% 달성 시 보증금 전액 환급 + 10% 추가 리워드가 지급됩니다!
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 섹션 (아코디언 UI) -->
+        <div class="faq-wrapper" id="faq-section">
+          <div class="section-header faq-header">
+            <span class="section-eyebrow">궁금한 점이 있으신가요?</span>
+            <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
+          </div>
+
+          <div class="accordion-list">
+            <!-- FAQ 아이템 1 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span>Q. 사전 신청을 하면 바로 결제가 진행되나요?</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>아니요! 사전 신청은 일절 비용이 발생하지 않습니다. 신청해 주신 연락처로 1기 크루 정식 오픈 알림과 함께 <strong>얼리버드 50% 수수료 할인 쿠폰 코드</strong>를 보내드리며, 이후 원하실 때 최종 합류를 결정하시면 됩니다.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 아이템 2 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span>Q. 인증 방식은 어떻게 진행되나요?</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>온라인 챌린지는 전용 프라이빗 라운지(타임스탬프 사진 또는 화면 공유)를 통해 간편하게 인증하며, 오프라인 커피챗 및 모각코는 매주 지정된 강남/성수/홍대 제휴 공간에서 호스트의 진행 아래 모입니다.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 아이템 3 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span>Q. 달성률 80% 이상이면 보증금은 어떻게 되나요?</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>70%~90% 달성 시 달성한 비율만큼 정직하게 환급해 드리며, <strong>100% 완주 시에는 보증금 전액(100%) 환급에 더해 미달성자의 벌금 풀에서 조성된 추가 리워드 보너스(10%)</strong>까지 함께 정산받으실 수 있습니다.</p>
+              </div>
+            </div>
+
+            <!-- FAQ 아이템 4 -->
+            <div class="accordion-item">
+              <button type="button" class="accordion-trigger" aria-expanded="false">
+                <span>Q. 혼자 참여해도 어색하지 않을까요?</span>
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>참여자분들의 95%가 혼자 신청하십니다! 첫 모임 시 어색함을 깨는 아이스브레이킹 질문 카드와 성향 기반 스몰토크 가이드가 제공되어 내향적인 분들도 부담 없이 몰입하고 소통하실 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       푸터 (Footer)
+  ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong class="logo">Crew<span class="text-coral">Up</span></strong>
+        <p>2030 취향·갓생 마이크로 모임 & 챌린지 매칭 플랫폼 (MVP 수요 검증 페이지)</p>
+      </div>
+      <p class="copyright">© 2026 CrewUp Team. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       모바일 전용 하단 고정 플로팅 CTA 바 (Mobile Floating Bottom Bar)
+  ====================================================================== -->
+  <div class="mobile-bottom-bar">
+    <div class="bottom-bar-info">
+      <span class="bottom-bar-sub">1기 베타 얼리버드 혜택</span>
+      <strong class="bottom-bar-main">수수료 50% 할인 쿠폰 지급</strong>
+    </div>
+    <button type="button" class="btn btn-coral open-modal-btn" data-crew="자유 선택 (전체 테마)">
+      사전 신청하기
+    </button>
+  </div>
+
+  <!-- =====================================================================
+       섹션 5. 사전 신청 모달(Modal) 팝업 & 수요 검증 폼 (Fake-door Test)
+  ====================================================================== -->
+  <div 
+    class="modal-overlay hidden" 
+    id="applyModal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modalTitle"
+  >
+    <div class="modal-box">
+      <!-- 닫기 버튼 -->
+      <button type="button" class="modal-close-btn" id="closeModalBtn" aria-label="모달 닫기">
+        &times;
+      </button>
+
+      <!-- [상태 1] 사전 신청 입력 폼 화면 -->
+      <div id="modalFormView">
+        <div class="modal-header">
+          <span class="badge badge-indigo">1기 베타 크루 사전 신청</span>
+          <h2 id="modalTitle" class="modal-title">자리 선점 & 얼리버드 혜택 받기</h2>
+          <p class="modal-desc">정식 오픈 시 가장 먼저 알림과 50% 할인 쿠폰을 보내드려요.</p>
+        </div>
+
+        <form id="preOrderForm" class="apply-form" novalidate>
+          <!-- 관심 모임 테마 (카드 클릭 시 자동 선택됨) -->
+          <div class="form-group">
+            <label for="crewSelect">관심 모임 테마 <span class="req">*</span></label>
+            <select id="crewSelect" name="selectedCrew" required>
+              <option value="자유 선택 (전체 테마)">자유 선택 (전체 테마 오픈 알림)</option>
+              <option value="퇴근 후 2시간 온라인 모각코 & 사이드프로젝트 크루">퇴근 후 2시간 온라인 모각코 & 사이드프로젝트 크루</option>
+              <option value="2주 만원 무지출 & 냉장고 파먹기 인증 챌린지">2주 만원 무지출 & 냉장고 파먹기 인증 챌린지</option>
+              <option value="주말 오전 10시 무소음 독서 & 인사이트 커피챗">주말 오전 10시 무소음 독서 & 인사이트 커피챗</option>
+              <option value="하루 30분 AI 툴(ChatGPT·노션) 실무 활용 7일 챌린지">하루 30분 AI 툴(ChatGPT·노션) 실무 활용 7일 챌린지</option>
+            </select>
+          </div>
+
+          <!-- 닉네임 -->
+          <div class="form-group">
+            <label for="userName">닉네임 <span class="req">*</span></label>
+            <input 
+              type="text" 
+              id="userName" 
+              name="nickname" 
+              placeholder="예: 갓생러주신" 
+              required 
+            />
+            <span class="error-msg" id="nameError">닉네임을 2자 이상 입력해 주세요.</span>
+          </div>
+
+          <!-- 연락처 (정규식 검증: 010-XXXX-XXXX) -->
+          <div class="form-group">
+            <label for="userPhone">연락처 (알림톡 발송용) <span class="req">*</span></label>
+            <input 
+              type="tel" 
+              id="userPhone" 
+              name="phone" 
+              placeholder="010-1234-5678" 
+              maxlength="13"
+              required 
+            />
+            <span class="error-msg" id="phoneError">010-XXXX-XXXX 형식으로 정확히 입력해 주세요.</span>
+          </div>
+
+          <!-- 이메일 -->
+          <div class="form-group">
+            <label for="userEmail">이메일 <span class="req">*</span></label>
+            <input 
+              type="email" 
+              id="userEmail" 
+              name="email" 
+              placeholder="example@email.com" 
+              required 
+            />
+            <span class="error-msg" id="emailError">올바른 이메일 주소를 입력해 주세요.</span>
+          </div>
+
+          <!-- 기대하는 점 한 줄 -->
+          <div class="form-group">
+            <label for="userExpectation">크루 활동에서 가장 기대하는 점 한 줄 <span class="req">*</span></label>
+            <input 
+              type="text" 
+              id="userExpectation" 
+              name="expectation" 
+              placeholder="예: 퇴근 후 딴짓 안 하고 개인 프로젝트 완성하고 싶어요!" 
+              required 
+            />
+            <span class="error-msg" id="expectError">기대하는 점을 간단히 적어주세요.</span>
+          </div>
+
+          <button type="submit" class="btn btn-coral btn-lg btn-full">
+            무료 사전 신청하고 50% 쿠폰 받기
+          </button>
+        </form>
+      </div>
+
+      <!-- [상태 2] 신청 완료 화면 (초기에는 숨김 처리) -->
+      <div id="modalSuccessView" class="modal-success-view hidden" aria-live="polite">
+        <div class="success-icon">🎉</div>
+        <h3 class="success-title">
+          1기 베타 크루 사전 신청이 완료되었습니다!
+        </h3>
+        <p class="success-desc">
+          얼리버드 50% 할인 쿠폰 코드가 발급되었습니다.<br />
+          선택하신 <strong id="confirmedCrewName" class="text-indigo"></strong> 오픈 시 가장 먼저 연락드릴게요!
+        </p>
+
+        <div class="coupon-box">
+          <span class="coupon-label">얼리버드 50% 할인 쿠폰 코드</span>
+          <strong class="coupon-code" id="couponCodeText">CREWUP-EARLY50</strong>
+        </div>
+
+        <p class="tracking-notice">
+          💡 (개발자 확인용) 현재 브라우저 <code>localStorage</code>에 신청 내역 및 테마별 클릭 수요 데이터가 안전하게 기록되었습니다.
+        </p>
+
+        <button type="button" class="btn btn-primary btn-full" id="confirmCloseBtn">
+          확인 및 닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 자바스크립트 연결 -->
+  <script src="js/app.js"></script>
+</body>
+</html>

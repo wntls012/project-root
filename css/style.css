@@ -1,0 +1,1195 @@
+/* ==========================================================================
+   1. CSS 변수(Custom Properties) 선언 - 2030 트렌디 인디고 & 코랄 팔레트
+========================================================================== */
+:root {
+  /* 컬러 팔레트 */
+  --color-primary: #4f46e5;       /* 메인 인디고 (신뢰감, 몰입) */
+  --color-primary-dark: #3730a3;  /* 인디고 호버 */
+  --color-primary-light: #eef2ff; /* 인디고 연한 배경 */
+  
+  --color-coral: #ff5a5f;         /* 포인트 코랄 (행동 유도, 에너지) */
+  --color-coral-dark: #e0484d;    /* 코랄 호버 */
+  --color-coral-light: #fff0f0;   /* 코랄 연한 배경 */
+
+  --color-bg: #ffffff;
+  --color-bg-light: #f8fafc;      /* 섹션 교차 배경색 */
+  --color-text: #0f172a;          /* 기본 다크 슬레이트 텍스트 */
+  --color-text-muted: #64748b;    /* 서브 설명 텍스트 */
+  --color-border: #e2e8f0;        /* 테두리 컬러 */
+  --color-success: #10b981;
+
+  /* 타이포그래피 (유동적 크기 조절 포함) */
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: clamp(1.4rem, 3vw, 1.85rem);
+  --text-hero: clamp(1.75rem, 5vw, 2.75rem);
+
+  /* 간격 및 레이아웃 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* 둥글기 및 그림자 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 35px -10px rgba(79, 70, 229, 0.15);
+
+  --header-height: 64px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   2. Reset & 기본 스타일 (가로 스크롤 방지 필수 적용)
+========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* 모바일 가로 스크롤 원천 차단 */
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* 모바일 하단 플로팅 바에 가려지지 않도록 여백 확보 */
+  padding-bottom: 80px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* 유틸리티 클래스 */
+.container {
+  width: 100%;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-coral { color: var(--color-coral); }
+.text-indigo { color: var(--color-primary); }
+.bg-light { background-color: var(--color-bg-light); }
+
+/* ==========================================================================
+   3. 공통 컴포넌트 (버튼, 뱃지, 섹션 헤더) - 모바일 터치 최소 48px 준수
+========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px; /* 모바일 터치 친화적 최소 높이 */
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-lg {
+  min-height: 54px;
+  font-size: var(--text-base);
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-md);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-coral {
+  background-color: var(--color-coral);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(255, 90, 95, 0.35);
+}
+.btn-coral:hover {
+  background-color: var(--color-coral-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+.btn-ghost:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-text);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+}
+.badge-indigo {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+.badge-coral {
+  background-color: var(--color-coral-light);
+  color: var(--color-coral);
+}
+
+.section {
+  padding: var(--space-12) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: var(--space-2);
+}
+
+.section-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   4. 상단 고정 헤더 (Mobile-First)
+========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-badge {
+  font-size: 0.7rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 모바일 햄버거 버튼 */
+.mobile-menu-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.mobile-menu-btn .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: var(--transition);
+}
+
+/* 모바일 네비게이션 드롭다운 (기본 숨김) */
+.main-nav {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+  display: none;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.main-nav.open {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-sm);
+}
+.nav-link:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   5. 섹션 1: 히어로 섹션 & 실시간 카운트다운 (Mobile 1열)
+========================================================================== */
+.hero-section {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+  color: #fff;
+  padding: var(--space-12) 0;
+}
+
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-coral);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255, 90, 95, 0.3);
+}
+
+.hero-title {
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.02em;
+}
+
+.hero-title .highlight {
+  color: #ffd166;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.hero-subtitle {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-6);
+}
+
+/* 카운트다운 타이머 */
+.countdown-box {
+  background-color: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.countdown-label {
+  font-size: var(--text-xs);
+  color: #cbd5e1;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.time-unit {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) 0;
+  text-align: center;
+}
+
+.time-val {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-txt {
+  font-size: var(--text-xs);
+  color: #cbd5e1;
+}
+
+.time-sep {
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* 히어로 우측 프리뷰 카드 */
+.preview-card {
+  background-color: #fff;
+  color: var(--color-text);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.spots-left {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  color: var(--color-coral);
+}
+
+.preview-title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+}
+
+.preview-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.preview-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  background-color: var(--color-bg-light);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+}
+
+.stat-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.stat-value {
+  font-size: var(--text-sm);
+}
+
+.progress-wrap {
+  margin-bottom: var(--space-4);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  margin-bottom: 6px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-coral));
+  border-radius: var(--radius-full);
+}
+
+.preview-avatars {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.avatar-group {
+  display: flex;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border: 2px solid #fff;
+  margin-left: -8px;
+}
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar-text {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   6. 섹션 2: 30초 성향 진단 미니 테스트 (퀴즈)
+========================================================================== */
+.quiz-container {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.quiz-progress-header {
+  margin-bottom: var(--space-6);
+}
+
+.quiz-step-text {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.quiz-progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 0.35s ease;
+}
+
+.quiz-q-title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  margin-bottom: var(--space-4);
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.quiz-option-btn {
+  width: 100%;
+  min-height: 54px;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quiz-option-btn:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.quiz-result-box {
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.quiz-result-title {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  margin: var(--space-3) 0 var(--space-2);
+  color: var(--color-primary);
+}
+
+.quiz-result-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.quiz-result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ==========================================================================
+   7. 섹션 3: 테마별 탭 필터 & 모임 카드 리스트 (Mobile 1열)
+========================================================================== */
+.tab-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-bottom: var(--space-8);
+}
+
+.tab-btn {
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 모바일 기본 1열 그리드 */
+.crew-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.crew-card {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.crew-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.card-top {
+  margin-bottom: var(--space-6);
+}
+
+.card-badges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.card-spots {
+  font-size: var(--text-xs);
+  font-weight: 800;
+  color: var(--color-coral);
+  background-color: var(--color-coral-light);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.card-title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: var(--space-2);
+}
+
+.card-schedule {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ==========================================================================
+   8. 섹션 4: 보증금 환급 계산기 & 아코디언 FAQ
+========================================================================== */
+.calc-card {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  max-width: 840px;
+  margin: 0 auto var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.calc-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.control-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.control-val {
+  color: var(--color-primary);
+  font-size: var(--text-base);
+}
+
+.range-slider {
+  width: 100%;
+  height: 8px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.range-marks {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.calc-result-panel {
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+
+.calc-divider {
+  border: none;
+  border-top: 1px dashed var(--color-border);
+  margin: var(--space-3) 0;
+}
+
+.calc-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+}
+
+.total-payout {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.calc-feedback {
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  background-color: #fff;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+/* FAQ 아코디언 */
+.faq-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.accordion-item {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion-trigger {
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-4);
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.accordion-icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  transition: transform 0.25s ease;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: var(--color-bg-light);
+}
+
+.accordion-content p {
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   9. 푸터 & 모바일 전용 하단 플로팅 CTA 바
+========================================================================== */
+.site-footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: var(--space-8) 0;
+  font-size: var(--text-xs);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.footer-brand .logo {
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+/* 모바일 하단 고정 플로팅 바 */
+.mobile-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 90;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.bottom-bar-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-bar-sub {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.bottom-bar-main {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   10. 섹션 5: 사전 신청 모달(Modal) 팝업
+========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--color-bg-light);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.modal-header {
+  margin-bottom: var(--space-6);
+}
+
+.modal-title {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  margin: var(--space-2) 0 4px;
+}
+
+.modal-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.req {
+  color: var(--color-coral);
+}
+
+.form-group input,
+.form-group select {
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.error-msg {
+  display: none;
+  font-size: var(--text-xs);
+  color: var(--color-coral);
+}
+
+.form-group.invalid input {
+  border-color: var(--color-coral);
+}
+
+.form-group.invalid .error-msg {
+  display: block;
+}
+
+/* 모달 완료 화면 */
+.modal-success-view {
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-2);
+}
+
+.success-title {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+}
+
+.success-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.coupon-box {
+  background-color: var(--color-primary-light);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.coupon-label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.coupon-code {
+  font-size: 1.35rem;
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.tracking-notice {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-light);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-6);
+}
+
+/* ==========================================================================
+   11. 미디어 쿼리: 태블릿 (@media min-width: 768px)
+========================================================================== */
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+
+  .section {
+    padding: var(--space-16) 0;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+  }
+
+  /* 퀴즈 및 계산기 패딩 확장 */
+  .quiz-container,
+  .calc-card {
+    padding: var(--space-8);
+  }
+
+  .quiz-result-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* 모임 카드 2열 Grid 배치 */
+  .crew-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 계산기 좌우 2단 배치 */
+  .calc-card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+
+/* ==========================================================================
+   12. 미디어 쿼리: 데스크톱 PC (@media min-width: 1024px)
+========================================================================== */
+@media (min-width: 1024px) {
+  body {
+    padding-bottom: 0; /* 데스크톱에선 모바일 플로팅 바 제거 */
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  /* 햄버거 버튼 및 모바일 하단 바 숨김 */
+  .mobile-menu-btn,
+  .mobile-bottom-bar {
+    display: none;
+  }
+
+  /* 네비게이션 가로 메뉴 전환 */
+  .main-nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+    gap: var(--space-6);
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+
+  /* 히어로 섹션 좌우 2단(텍스트 + 인터랙티브 프리뷰 카드) 배치 */
+  .hero-section {
+    padding: 5rem 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  /* 모임 카드 4열 Grid 배치 */
+  .crew-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+}
